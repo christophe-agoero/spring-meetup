@@ -1,22 +1,12 @@
 package fr.agoero.ws.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public record CharacterDto(
+        int id,
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class CharacterDto {
+        String firstname,
 
-    private int id;
+        String lastname,
 
-    private String firstname;
-
-    private String lastname;
-
-    private String code;
-
+        String code
+) {
 }

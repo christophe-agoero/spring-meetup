@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CharacterMapper {
 
-
     /**
      * Permet de construire un CharacterDto à partir d'un Character
      *
@@ -20,12 +19,12 @@ public final class CharacterMapper {
      * @return CharacterDto
      */
     public static CharacterDto buildDtoFromEntity(Character character) {
-        return CharacterDto.builder()
-                           .id(character.getId())
-                           .firstname(character.getFirstname())
-                           .lastname(character.getLastname())
-                           .code(character.getCode())
-                           .build();
+        return new CharacterDto(
+                character.getId(),
+                character.getFirstname(),
+                character.getLastname(),
+                character.getCode()
+        );
     }
 
     /**
@@ -36,9 +35,9 @@ public final class CharacterMapper {
      */
     public static Character buildEntityFromCreateDto(CharacterCreateDto characterCreateDto) {
         return Character.builder()
-                        .firstname(characterCreateDto.getFirstname())
-                        .lastname(characterCreateDto.getLastname())
-                        .code(characterCreateDto.getCode())
+                        .firstname(characterCreateDto.firstname())
+                        .lastname(characterCreateDto.lastname())
+                        .code(characterCreateDto.code())
                         .build();
     }
 
