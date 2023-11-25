@@ -1,0 +1,38 @@
+# SPRING
+spring:
+  # DATASOURCE
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring_meetup_db
+    username: spring-meetup-user
+    password: spring-meetup-pwd
+    hikari:
+      idle-timeout: 30000
+      minimum-idle: 2
+      maximum-pool-size: 5
+  # JPA
+  jpa:
+    database: postgresql
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  # MVC
+  mvc:
+    # Obligatoire si aucune classe avec @RestControllerAdvice n'étend ResponseEntityExceptionHandler
+#    problemdetails:
+#      enabled: true
+    # Obligatoire pour que NoHandlerFoundException soit prise en compte
+    throw-exception-if-no-handler-found: true
+  # RESOURCES
+  # Obligatoire pour que NoHandlerFoundException soit prise en compte
+  web:
+    resources:
+      add-mappings: false
+  # SECURITY
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000/realms/spring-meetup-realm
+          jwk-set-uri: http://localhost:9000/realms/spring-meetup-realm/protocol/openid-connect/certs
