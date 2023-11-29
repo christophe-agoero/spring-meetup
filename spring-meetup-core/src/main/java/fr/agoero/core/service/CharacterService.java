@@ -1,9 +1,7 @@
 package fr.agoero.core.service;
 
 import fr.agoero.core.domain.Character;
-import fr.agoero.core.exception.CharacterExceptionConstants;
 import fr.agoero.core.exception.common.CustomErrorResponseException;
-import fr.agoero.core.exception.common.ErrorResponseExceptionEnum;
 import fr.agoero.core.repository.CharacterRepository;
 import fr.agoero.core.util.ValidationUtil;
 import lombok.RequiredArgsConstructor;
@@ -48,10 +46,10 @@ public class CharacterService {
     @Transactional
     public Character create(Character character) {
         ValidationUtil.checkObjectAndThrow(CHARACTER_CONSTRAINT_VIOLATION, character);
-        if(characterRepository.existsByCode(character.getCode())){
+        if (characterRepository.existsByCode(character.getCode())) {
             throw new CustomErrorResponseException(
                     CHARACTER_ALREADY_EXISTS,
-                    character.getCode()
+                    String.format(CHARACTER_ALREADY_EXISTS_DETAIL, character.getCode())
             );
         }
         return characterRepository.persist(character);
